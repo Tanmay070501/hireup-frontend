@@ -18,12 +18,14 @@ import { Link as RouterLink } from "react-router-dom";
 import { purple } from "@mui/material/colors";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { authActions } from "../store/auth";
 function Login() {
     const [showPassword, setShowPassword] = React.useState(false);
     const emailRef = useRef(null);
     const passRef = useRef(null);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
-
+    const dispatch = useDispatch();
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
@@ -39,7 +41,8 @@ function Login() {
         }
         try {
             const res = await axios.post(
-                process.env.REACT_APP_BACKEND_URL + "/auth/login",
+                "https://plenty-coins-wink-27-7-119-236.loca.lt" +
+                    "/auth/login",
                 {
                     email: emailRef.current.value,
                     password: passRef.current.value,
@@ -51,7 +54,7 @@ function Login() {
                 }
             );
             console.log(res);
-            toast(res.data?.message);
+            dispatch(authActions.login(res?.data));
         } catch (err) {
             toast.error(err.response?.data?.message);
         }
