@@ -41,8 +41,7 @@ function Login() {
         }
         try {
             const res = await axios.post(
-                "https://plenty-coins-wink-27-7-119-236.loca.lt" +
-                    "/auth/login",
+                process.env.REACT_APP_BACKEND_URL + "/auth/login",
                 {
                     email: emailRef.current.value,
                     password: passRef.current.value,

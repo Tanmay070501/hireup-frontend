@@ -14,6 +14,11 @@ const authSlice = createSlice({
                 },
             };
         },
+        logout() {
+            return {
+                user: null,
+            };
+        },
     },
 });
 
