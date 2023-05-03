@@ -3,10 +3,12 @@ import { purple } from "@mui/material/colors";
 import React from "react";
 import courses from "../utils/course";
 import axios from "axios";
+import axiosInstance from "../utils/axiosInstance";
 
 function StudentCompleteProfile() {
-    const formSubmitHandler = (e) => {
+    const formSubmitHandler = async (e) => {
         e.preventDefault();
+        await axiosInstance.post("/student", { nothing: "nothing" });
     };
     const coursesList = courses.map((el) => {
         return {
