@@ -8,7 +8,7 @@ import axiosInstance from "../utils/axiosInstance";
 function StudentCompleteProfile() {
     const formSubmitHandler = async (e) => {
         e.preventDefault();
-        await axiosInstance.post("/student", { nothing: "nothing" });
+        await axiosInstance.post("/student/create", { nothing: "nothing" });
     };
     const coursesList = courses.map((el) => {
         return {

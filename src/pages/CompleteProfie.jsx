@@ -56,9 +56,8 @@ function CompleteProfie() {
                 maxWidth={"xs"}
             >
                 <Typography variant="h5">Complete Your Profile</Typography>
-                {user?.role?.toLowerCase() === "student" && (
-                    <StudentCompleteProfile />
-                )}
+
+                <StudentCompleteProfile />
             </Container>
         </React.Fragment>
     );
