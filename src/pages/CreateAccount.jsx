@@ -1,14 +1,13 @@
 import { Button, Container, TextField } from "@mui/material";
 import React, { useRef, useState } from "react";
 import MainLogo from "../components/MainLogo";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-import axiosInstance from "../utils/axiosInstance";
-import { Deblur } from "@mui/icons-material";
 
 function CreateAccount() {
     const [error, setError] = useState(false);
+    const navigate = useNavigate();
     const passRef = useRef(null);
     const confirmPassRef = useRef(null);
     const { token } = useParams();
@@ -20,7 +19,7 @@ function CreateAccount() {
         }
         // console.log("reach");
         try {
-            const res = axios.post(
+            const res = await axios.post(
                 process.env.REACT_APP_BACKEND_URL + "/auth/createAccount",
                 {
                     token,
@@ -28,7 +27,7 @@ function CreateAccount() {
                 }
             );
             console.log(res);
-            res.resolve((res) => console.log(res));
+            navigate("/login?success=true");
         } catch (err) {
             toast.error(err.response?.data?.message);
         }

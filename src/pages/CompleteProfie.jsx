@@ -12,12 +12,17 @@ import { Link } from "react-router-dom";
 import { authActions } from "../store/auth";
 import { purple } from "@mui/material/colors";
 import StudentCompleteProfile from "../components/StudentCompleteProfile";
+import CompanyCompleteProfile from "../components/CompanyCompleteProfile";
 
 function CompleteProfie() {
     const { user } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
     const logoutHandler = () => {
         dispatch(authActions.logout());
+    };
+    const renderCompleteProfile = () => {
+        if (user.role === "student") return <StudentCompleteProfile />;
+        if (user.role === "company") return <CompanyCompleteProfile />;
     };
     return (
         <React.Fragment>
@@ -57,7 +62,7 @@ function CompleteProfie() {
             >
                 <Typography variant="h5">Complete Your Profile</Typography>
 
-                <StudentCompleteProfile />
+                {renderCompleteProfile()}
             </Container>
         </React.Fragment>
     );

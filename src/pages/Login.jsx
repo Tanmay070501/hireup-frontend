@@ -11,10 +11,10 @@ import {
     TextField,
     Typography,
 } from "@mui/material";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import MainLogo from "../components/MainLogo";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useSearchParams } from "react-router-dom";
 import { purple } from "@mui/material/colors";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -24,6 +24,14 @@ function Login() {
     const [showPassword, setShowPassword] = React.useState(false);
     const emailRef = useRef(null);
     const passRef = useRef(null);
+    const [searchParams] = useSearchParams();
+
+    useEffect(() => {
+        const success = searchParams.get("success");
+        if (success === "true") {
+            toast.success("Account created successfully! Login in now.");
+        }
+    }, [searchParams]);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const dispatch = useDispatch();
     const handleMouseDownPassword = (event) => {
@@ -52,7 +60,6 @@ function Login() {
                     },
                 }
             );
-            console.log(res);
             dispatch(authActions.login(res?.data));
         } catch (err) {
             toast.error(err.response?.data?.message);

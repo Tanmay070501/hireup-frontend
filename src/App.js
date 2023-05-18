@@ -4,9 +4,8 @@ import Login from "./pages/Login";
 import { useSelector } from "react-redux";
 import Dashboard from "./pages/Dashboard";
 import CompleteProfie from "./pages/CompleteProfie";
-import CreateJobPost from "./pages/CreateJobPost";
 import CreateAccount from "./pages/CreateAccount";
-import InviteRecruiter from "./pages/InviteRecruiter";
+import UserRoutes from "./components/UserRoutes";
 
 function App() {
     const { user } = useSelector((state) => state.auth);
@@ -34,10 +33,10 @@ function App() {
     return (
         <Routes>
             <Route path="/" element={<Dashboard />}>
-                <Route path="job/create" element={<CreateJobPost />} />
-                <Route path="invite" element={<InviteRecruiter />} />
+                {/* <Route path="job/create" element={<CreateJobPost />} />
+                <Route path="invite" element={<InviteRecruiter />} /> */}
+                <Route path="*" element={<UserRoutes />} />
             </Route>
-            <Route path="*" element={<Navigate to={"/"} />} />
         </Routes>
     );
 }

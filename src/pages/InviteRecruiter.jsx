@@ -19,7 +19,7 @@ function InviteRecruiter() {
                 email: emailRef.current.value,
                 userId,
             });
-            console.log(res);
+            toast.success(res?.data?.message);
         } catch (err) {
             toast.error(err.response?.data?.message || "Something went wrong");
         }

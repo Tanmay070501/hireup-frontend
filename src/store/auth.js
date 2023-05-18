@@ -19,6 +19,10 @@ const authSlice = createSlice({
                 user: null,
             };
         },
+        updateUser(state, action) {
+            const user = Object.assign({}, state.user, action.payload);
+            return { ...state, user: { ...user } };
+        },
     },
 });
 

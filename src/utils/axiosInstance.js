@@ -1,7 +1,6 @@
 import axios from "axios";
 import store from "../store";
 import { authActions } from "../store/auth";
-import { toast } from "react-toastify";
 
 const baseURL = process.env.REACT_APP_BACKEND_URL;
 
