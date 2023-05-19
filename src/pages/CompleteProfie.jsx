@@ -13,6 +13,7 @@ import { authActions } from "../store/auth";
 import { purple } from "@mui/material/colors";
 import StudentCompleteProfile from "../components/StudentCompleteProfile";
 import CompanyCompleteProfile from "../components/CompanyCompleteProfile";
+import RecruiterCompleteProfile from "../components/RecruiterCompleteProfile";
 
 function CompleteProfie() {
     const { user } = useSelector((state) => state.auth);
@@ -23,6 +24,7 @@ function CompleteProfie() {
     const renderCompleteProfile = () => {
         if (user.role === "student") return <StudentCompleteProfile />;
         if (user.role === "company") return <CompanyCompleteProfile />;
+        if (user.role === "recruiter") return <RecruiterCompleteProfile />;
     };
     return (
         <React.Fragment>

@@ -2,8 +2,11 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import React, { useRef, useState } from "react";
 import { toast } from "react-toastify";
 import axiosInstance from "../utils/axiosInstance";
+import { useDispatch } from "react-redux";
+import { authActions } from "../store/auth";
 
 function CompanyCompleteProfile() {
+    const dispatch = useDispatch();
     const [file, setFile] = useState();
     const nameRef = useRef(null);
     const descriptionRef = useRef(null);
@@ -28,6 +31,7 @@ function CompanyCompleteProfile() {
         try {
             const res = await axiosInstance.post("/company/create", formData);
             console.log(res?.data);
+            dispatch(authActions.updateUser(res?.data?.result));
         } catch (err) {
             toast.error(
                 err?.response?.data?.message || "Something went wrong!"

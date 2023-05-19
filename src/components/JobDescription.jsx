@@ -1,11 +1,10 @@
 import { Typography } from "@mui/material";
-import React, { useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef } from "react";
 import JoditEditor from "jodit-react";
 
-function JobDescription({ placeholder }) {
+function JobDescription({ placeholder, content, setContent }) {
     const editor = useRef(null);
-    const [content, setContent] = useState("");
-    console.log(content);
+    //console.log(content);
     const config = useMemo(() => {
         return {
             readonly: false, // all options from https://xdsoft.net/jodit/docs/,
