@@ -1,9 +1,12 @@
+import jobReducer from "./job";
+
 const { configureStore } = require("@reduxjs/toolkit");
 const { default: authReducer } = require("./auth");
 
 const store = configureStore({
     reducer: {
         auth: authReducer,
+        jobPost: jobReducer,
     },
     preloadedState: loadFromLocalStorage(),
 });
