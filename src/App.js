@@ -1,4 +1,4 @@
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import { useSelector } from "react-redux";
@@ -6,9 +6,13 @@ import Dashboard from "./pages/Dashboard";
 import CompleteProfie from "./pages/CompleteProfie";
 import CreateAccount from "./pages/CreateAccount";
 import UserRoutes from "./components/UserRoutes";
+import DashboardComponent from "./components/DashboardComponent";
+import AskAdminForApprovalOrUnban from "./pages/AskAdminForApprovalOrUnban";
 
 function App() {
     const { user } = useSelector((state) => state.auth);
+    const history = useLocation();
+    console.log(history);
     if (!user) {
         return (
             <Routes>
@@ -19,6 +23,20 @@ function App() {
                     element={<CreateAccount />}
                 />
                 <Route path="*" element={<Navigate to={"/login"} />} />
+            </Routes>
+        );
+    }
+    if (
+        (user.role === "company" || user.role === "pcell") &&
+        !user?.approvedByAdmin
+    ) {
+        return (
+            <Routes>
+                <Route
+                    path="/needApproval"
+                    element={<AskAdminForApprovalOrUnban text="Approval" />}
+                />
+                <Route path="*" element={<Navigate to={"/needApproval"} />} />
             </Routes>
         );
     }
@@ -35,6 +53,7 @@ function App() {
             <Route path="/" element={<Dashboard />}>
                 {/* <Route path="job/create" element={<CreateJobPost />} />
                 <Route path="invite" element={<InviteRecruiter />} /> */}
+                <Route path="/" element={<DashboardComponent />} />
                 <Route path="*" element={<UserRoutes />} />
             </Route>
         </Routes>
