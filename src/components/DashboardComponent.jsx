@@ -5,6 +5,7 @@ import RecruiterDashboard from "../pages/RecruiterDashboard";
 import AdminDashboard from "../pages/AdminDashboard";
 import AppliedToJobs from "../pages/AppliedToJobs";
 import PCellDashboard from "../pages/PCellDashboard";
+import CompanyRecruitersList from "../pages/CompanyRecruitersList";
 
 function DashboardComponent() {
     const { user } = useSelector((state) => state.auth);
@@ -12,6 +13,12 @@ function DashboardComponent() {
         return (
             <Routes>
                 <Route path="*" element={<AdminDashboard />} />
+            </Routes>
+        );
+        if (user?.role === "company")
+        return (
+            <Routes>
+                <Route path="*" element={<CompanyRecruitersList />} />
             </Routes>
         );
     if (user?.role === "recruiter")

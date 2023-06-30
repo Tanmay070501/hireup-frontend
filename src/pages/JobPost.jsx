@@ -233,7 +233,7 @@ function JobPost() {
                 >
                     <img
                         style={{
-                            objectFit: "fill",
+                            objectFit: "scale-down",
                             width: "100%",
                             height: "100%",
                         }}
