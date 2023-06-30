@@ -130,9 +130,9 @@ function Login() {
                                 Don't have an acount? Sign up
                             </Link>
                         </Typography>
-                        <Typography>
+                        {/* <Typography>
                             <Link>Forgot Password?</Link>
-                        </Typography>
+                        </Typography> */}
                     </Box>
                 </form>
             </Container>
