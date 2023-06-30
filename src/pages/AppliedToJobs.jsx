@@ -42,7 +42,7 @@ function AppliedToJobs() {
                 "job-title": el.title,
                 "No. of Applicants": el?.applied?.length,
                 "sr.no.": idx + 1,
-                "Job Location": el?.location,
+                "Job Location": el?.jobLocation,
                 "Company Name": el?.company?.name,
                 code: `${el.title}-${idx}`,
                 id: el._id,
